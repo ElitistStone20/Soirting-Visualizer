@@ -7,6 +7,7 @@ import { getHeapSortAnimations } from '../sortingAlgorithms/heap_sort';
 
 var ANIMATION_SPEED_MS = 6;
 var NUMBER_OF_ARRAY_BARS = 310;
+var isSorting = false;
 const COMPLETED_SPEED = 3;
 const BAR_COLOUR = 'turquoise';
 const FINALISED_COLOR = 'lightgreen';
@@ -27,6 +28,7 @@ export default class SortingVisualizer extends React.Component {
 
     //Generates a new array of length n of n random integers, where n = the length of the array
     resetArray() {
+        if (isSorting) return;
         this.reset_bar_colours();
         const array = [];
         for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++){
@@ -51,9 +53,12 @@ export default class SortingVisualizer extends React.Component {
             }, i * COMPLETED_SPEED);           
         }
         enable_disable_buttons(false);
+        isSorting = false;
     }
 
     mergeSort() {
+        if (isSorting) return;
+        isSorting = true;
         enable_disable_buttons(true);
         // Get all the animations for merge sort
         const animations = getMergeSortAnimations(this.state.array);
@@ -73,6 +78,8 @@ export default class SortingVisualizer extends React.Component {
     }
 
     quickSort(){
+        if (isSorting) return;
+        isSorting = true;
         enable_disable_buttons(true);
         const animations = getQuickSortAnimations(this.state.array);
         const arrayBars = document.getElementsByClassName('array-bar');
@@ -96,6 +103,8 @@ export default class SortingVisualizer extends React.Component {
     }
 
     heapSort() {
+        if (isSorting) return;
+        isSorting = true;
         enable_disable_buttons(true);
         const animations = getHeapSortAnimations(this.state.array);
         const arrayBars = document.getElementsByClassName('array-bar');
@@ -119,6 +128,8 @@ export default class SortingVisualizer extends React.Component {
     }
 
     bubbleSort() {
+        if (isSorting) return;
+        isSorting = true;
         ANIMATION_SPEED_MS = 1;
         enable_disable_buttons(true);
         const animations = getBubbleSortAnimations(this.state.array);
