@@ -43,6 +43,7 @@ export default class SortingVisualizer extends React.Component {
         this.setState({array});   
     }
 
+    // Resets the bar colours
     reset_bar_colours(){
         // Get bars by class name
         const array_bars = document.getElementsByClassName('array-bar');

@@ -1,48 +1,75 @@
+var animations;
 export function getHeapSortAnimations(array) {
-    var animations = [];
+    // Check if array length is less than or equal to 1
     if (array.length <= 1) return array;
-    animations = HeapSortAlgorithm(array, animations);
-    console.log(animations);
+    animations = [];
+    // Execute heap sort
+    HeapSortAlgorithm(array);
     return animations;
 }
 
-function swap(array, index_a, index_b, animations) {
-    console.log(animations);
-    var temp = array[index_a];
-    array[index_a] = array[index_b];
-    array[index_b] = temp;
-    animations.push([index_a, index_b, array[index_a], array[index_b]]);
-    return animations;
+function swap(array, firstIdx, lastIdx) {
+    const temp = array[firstIdx];
+
+    // Swap first and last items in the array
+    array[firstIdx] = array[lastIdx];
+    array[lastIdx] = temp;
+
+    //Push animation to animation array
+    animations.push([firstIdx, lastIdx, array[firstIdx], array[lastIdx]]);
 }
 
-function heap_root(array, i, array_length, animations) {
-    var left = 2 * i + 1;
-    var right = 2 * i + 2;
-    var max = i;
+function heapify(heap, i, max) {
+    // Declare local variables
+    let index, leftChild, rightChild;
 
-    if (left < array_length && array[left] > array[max]){
-        max = left;
+    while (i < max) {
+        index = i;
+
+        leftChild = 2 * i + 1;
+        rightChild = leftChild + 1;
+
+        // If the left child is not last element 
+        // And its value is bigger
+        if (leftChild < max && heap[leftChild] > heap[index]) {
+            index = leftChild;
+        }
+    
+        // If the right child is not last element 
+        // And its value is bigger
+        if (rightChild < max && heap[rightChild] > heap[index]) {
+            index = rightChild;
+        }
+    
+        // If none of the above conditions is true
+        // Just return
+        if (index === i) return
+        // Else swap elements
+        swap(heap, i, index);
+        // Continue by using the swapped index
+        i = index;
     }
-    if (right < array_length && array[right] > array[max]) {
-        max = right;
-    }
-    if (max !== i) {
-        animations = swap(array, i, max, animations);
-        animations = heap_root(array, max, animations);
-    }
-    return animations;
 }
 
-function HeapSortAlgorithm(array, animations) {
-    var array_length = array.length;
-    for (let i = Math.floor(array_length / 2); i>= 0; i -= 1) {
-        animations = heap_root(array, i, array_length, animations);
-    }
-    for (let i = array.length - 1; i > 0; i--){
-        animations = swap(array, 0, i, animations);
-        array_length--;
+function buildMaxHeap(array) {
+    // Get index of middle element
+    let i = Math.floor(array.length / 2 - 1);
 
-        animations = heap_root(array_length, 0, animations);
+    // Build max heap out of all elements passed
+    while (i >= 0) {
+        heapify(array, i, array.length);
+        i -=1;
     }
-    return animations;
+}
+
+function HeapSortAlgorithm(array) {
+    buildMaxHeap(array);
+
+    var lastElement = array.length - 1;
+
+    while (lastElement > 0) {
+        swap(array, 0, lastElement);
+        heapify(array, 0, lastElement);
+        lastElement -= 1;
+    }
 }
