@@ -1,7 +1,11 @@
 export function getMergeSortAnimations(array) {
-    const animations = [];
+    // Check if the array length is less than or equal to 1
     if (array.length <= 1) return array;
+    // Declare animations array
+    const animations = [];
+    // Declare auxilary array
     const auxilaryArray = array.slice();
+    // Execute the merge sort helper
     mergeSortHelper(array, 0, array.length - 1, auxilaryArray, animations);
     return animations;
 }
@@ -13,8 +17,11 @@ function mergeSortHelper(
     auxilaryArray, 
     animations
 ) {
+    // Check if start index equals the end index
     if (startIdx === endIdx) return;
+    // Calculate the middle index
     const middleIdx = Math.floor((startIdx + endIdx) / 2);
+    // Recursive section
     mergeSortHelper(auxilaryArray, startIdx, middleIdx, mainArray, animations);
     mergeSortHelper(auxilaryArray, middleIdx + 1, endIdx, mainArray, animations);
     mergeSortAlgorithm(mainArray,  startIdx, middleIdx, endIdx, auxilaryArray, animations);
@@ -28,6 +35,7 @@ function mergeSortAlgorithm(
     auxiliaryArray,
     animations,
 ) {
+    // Declare local variables
     let k = startIdx;
     let i = startIdx;
     let j = middleIdx + 1;

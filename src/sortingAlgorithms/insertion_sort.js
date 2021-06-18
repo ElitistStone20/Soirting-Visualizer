@@ -1,6 +1,9 @@
 export function getInsertionSortAnimations(array) {
-    var animations = [];
+    // Check if the array length is less than or equal to 1
     if (array.length <= 1) return array;
+    // Declare animations array
+    var animations = [];
+    // Execute insertion sort of the array
     animations = InsertionSortAlgorithm(array, animations);
     return animations;
 }

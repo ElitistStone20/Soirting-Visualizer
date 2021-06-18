@@ -1,12 +1,15 @@
 export function getQuickSortAnimations(array) {
-    var animations = [];
+    // Check if the array length is less than equal to 1
     if (array.length <= 1) return array;
+    // Declare animations array
+    var animations = [];
+    // Execute quicksort on the array
     animations = QuickSortAlgorithm(array, 0, array.length-1, animations);
     return animations;  
 }
 
 function QuickSortAlgorithm(array, startIdx, endIdx, animations) {
-    if (array.length <= 1) return array;
+    // Declare local variables
     var i = startIdx;
     var j = endIdx;
     var temp;
