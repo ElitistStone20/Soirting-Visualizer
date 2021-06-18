@@ -5,7 +5,7 @@ import { getBubbleSortAnimations } from '../sortingAlgorithms/bubble_sort';
 import { getQuickSortAnimations } from '../sortingAlgorithms/quicksort';
 import { getHeapSortAnimations } from '../sortingAlgorithms/heap_sort';
 
-var ANIMATION_SPEED_MS = 8;
+var ANIMATION_SPEED_MS = 6;
 var NUMBER_OF_ARRAY_BARS = 310;
 const COMPLETED_SPEED = 3;
 const BAR_COLOUR = 'turquoise';
@@ -43,13 +43,6 @@ export default class SortingVisualizer extends React.Component {
         }
     }
 
-    enable_disable_buttons(enabled) {
-        const buttons = document.getElementById("option-button");
-        for (let i = 0; i < buttons.length; i++){
-            buttons[i].disabled = enabled;
-        }
-    }
-
     sort_complete(array_bars){
         for (let i = 0; i < array_bars.length; i++) {
             setTimeout(() => {
@@ -57,12 +50,11 @@ export default class SortingVisualizer extends React.Component {
                 bar_style.backgroundColor = FINALISED_COLOR;
             }, i * COMPLETED_SPEED);           
         }
-        this.enable_disable_buttons(false);
+        enable_disable_buttons(false);
     }
 
     mergeSort() {
-        ANIMATION_SPEED_MS = 6;
-        this.enable_disable_buttons(true);
+        enable_disable_buttons(true);
         // Get all the animations for merge sort
         const animations = getMergeSortAnimations(this.state.array);
         const arrayBars = document.getElementsByClassName('array-bar');
@@ -81,7 +73,7 @@ export default class SortingVisualizer extends React.Component {
     }
 
     quickSort(){
-        this.enable_disable_buttons(true);
+        enable_disable_buttons(true);
         const animations = getQuickSortAnimations(this.state.array);
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {         
@@ -104,7 +96,7 @@ export default class SortingVisualizer extends React.Component {
     }
 
     heapSort() {
-        this.enable_disable_buttons(true);
+        enable_disable_buttons(true);
         const animations = getHeapSortAnimations(this.state.array);
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {         
@@ -128,7 +120,7 @@ export default class SortingVisualizer extends React.Component {
 
     bubbleSort() {
         ANIMATION_SPEED_MS = 1;
-        this.enable_disable_buttons(true);
+        enable_disable_buttons(true);
         const animations = getBubbleSortAnimations(this.state.array);
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < animations.length; i++) {                    
@@ -182,4 +174,11 @@ export default class SortingVisualizer extends React.Component {
 // From StackOverflow
 function randomIntFromInterval(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function enable_disable_buttons(enabled) {
+    const buttons = document.getElementById("option-button");
+    for (let i = 0; i < buttons.length; i++){
+        buttons[i].disabled = enabled;
+    }
 }

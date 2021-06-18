@@ -36,7 +36,7 @@ function heap_root(array, i, array_length, animations) {
 function HeapSortAlgorithm(array, animations) {
     var array_length = array.length;
     for (let i = Math.floor(array_length / 2); i>= 0; i -= 1) {
-        animations = heap_root(array, i, array_length);
+        animations = heap_root(array, i, array_length, animations);
     }
     for (let i = array.length - 1; i > 0; i--){
         animations = swap(array, 0, i, animations);
