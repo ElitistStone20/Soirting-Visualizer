@@ -8,7 +8,7 @@ import { getInsertionSortAnimations } from '../sortingAlgorithms/insertion_sort'
 
 // Adjustable variables
 var ANIMATION_SPEED_MS = 9;
-var NUMBER_OF_ARRAY_BARS = 310;
+var ARRAY_SIZE = 310;
 var isSorting = false;
 const COMPLETED_SPEED = 3;
 const BAR_COLOUR = 'turquoise';
@@ -25,7 +25,34 @@ export default class SortingVisualizer extends React.Component {
 
     //On mount create the array
     componentDidMount() {
-        this.resetArray();
+        this.resetArray(310);
+    }
+
+    update_slider() {
+        var slider = document.getElementById("slider");
+        var output = document.getElementById("slider-output");
+       
+        output.innerHTML = slider.value;
+        if (slider.value <= slider.max-1 && slider.value >= 5){
+            ARRAY_SIZE = slider.value;
+            this.resetArray();            
+        }
+        
+    }
+
+    responsive_bar_size() {
+        var array_bars = document.getElementsByClassName('array-bar');
+        var size = 2;
+        if (ARRAY_SIZE > 261) size = 1;
+        if (ARRAY_SIZE < 260) size = 5;       
+        if (ARRAY_SIZE < 100) size = 15;   
+        if (ARRAY_SIZE < 20) size = 20;  
+        for (let i = 0; i < array_bars.length; i++) {
+            // Get the style property for the individual bar
+            const bar_style = array_bars[i].style;
+            //Set the width of the bar
+            bar_style.width = `${size}px`;
+        }
     }
 
     //Generates a new array of length n of n random integers, where n = the length of the array
@@ -36,11 +63,12 @@ export default class SortingVisualizer extends React.Component {
         this.reset_bar_colours();
         const array = [];
         // Loop through all bars
-        for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++){
+        for (let i = 0; i < ARRAY_SIZE; i++){
             // generate random integer between 10 and 700
             array.push(randomIntFromInterval(10, 700));
         }
-        this.setState({array});   
+        this.setState({array}); 
+        this.responsive_bar_size();
     }
 
     // Resets the bar colours
@@ -181,6 +209,11 @@ export default class SortingVisualizer extends React.Component {
         return ( 
             <div className="App">               
                 <div className="options-container">
+                    <div className="slidecontainer">
+                        <h2>Adjust array:</h2>
+                        <input type="range" min="4" max="600" value="310" className="slider" id="slider" onChange={() => this.update_slider()}/>
+                        <h3 id="slider-output">Test</h3>
+                    </div>
                     <button type="button" id="option-button" onClick={() => this.resetArray()}>Generate New Array</button>
                     <button type="button" id="option-button" onClick={() => this.mergeSort()}>Merge Sort</button>
                     <button type="button" id="option-button" onClick={() => this.quickSort()}>Quick Sort</button>

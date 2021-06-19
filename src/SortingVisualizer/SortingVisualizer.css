@@ -2,7 +2,10 @@
     --background-color: rgba(31, 31, 31, 0.925);
     --secondary-color: rgb(24, 24, 24);
     --text-color: white;
+    --bar-color: turquoise;
 }
+
+/*Options bar and all objects*/
 
 .options-container {
     background-color: var(--secondary-color);
@@ -19,8 +22,55 @@
     border-radius: 10%;
     font-size: 15px;
     transition: 0.5s;
+    -webkit-transition: 0.5s;
 }
 
+/*Slider*/
+
+.slidecontainer {
+    margin-top: 5px;
+    position: absolute;
+}
+.slidecontainer h2 {
+    color: var(--text-color);
+    font-size: 20px;
+    float: left;
+    padding-left: 15px;
+    position: relative;
+}
+.slidecontainer h3 {
+    color: var(--text-color);
+    font-size: 14px;
+    float: right;
+    position: relative;
+    margin-top: 21px;
+    padding-left: 10px;
+}
+
+.slider {
+    margin-top: 20px;
+    margin-left: 15px;
+    position: relative;
+    width: 15rem;
+    height: 25px;
+    float: left;
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+  
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    cursor: pointer; /* Cursor on hover */
+}
+
+
+/*Main body of the webpage*/
 .body {
     background-color: var(--background-color);
 }
@@ -34,10 +84,11 @@
 
 .array-bar {
     width: 3px;
-    background-color: turquoise;
+    background-color: var(--bar-color);
     display: inline-block;
     margin: 0 1px;
     transition: 0.1s;
+    -webkit-transition: 0.1s;
 }
 
 .options-container {
@@ -45,7 +96,7 @@
 }
 
 
-/*Option button animations*/
+/*Option button animations and transitions*/
 
 .options-container button:hover {
     transform: scale(1.1);
