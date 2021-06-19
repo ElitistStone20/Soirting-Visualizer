@@ -181,6 +181,10 @@ export default class SortingVisualizer extends React.Component {
         return ( 
             <div className="App">               
                 <div className="options-container">
+                    <div className="slidecontainer">
+                        <h2>Adjust array:</h2>
+                        <input type="range" min="4" max="1000" value="502" className="slider" id="slider"/>
+                    </div>
                     <button type="button" id="option-button" onClick={() => this.resetArray()}>Generate New Array</button>
                     <button type="button" id="option-button" onClick={() => this.mergeSort()}>Merge Sort</button>
                     <button type="button" id="option-button" onClick={() => this.quickSort()}>Quick Sort</button>
