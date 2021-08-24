@@ -6,13 +6,61 @@
 }
 
 /*Options bar and all objects*/
-
 .options-container {
     background-color: var(--secondary-color);
     position: absolute;
     width: 100%;
+    height: 100px;
 }
-.options-container button {
+.options {
+    display: inline-block;
+}
+.custom-select select {
+    display: none;
+}
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+#option-button {
     display: inline-block;
     margin: 20px;
     color: var(--text-color);
@@ -20,16 +68,36 @@
     border: none;
     padding: 5px;
     border-radius: 10%;
-    font-size: 15px;
+    margin-left: 150px;
+    font-size: 25px;
     transition: 0.5s;
     -webkit-transition: 0.5s;
+}
+#reset-button {
+    margin-top: 27px;
+    padding-left: 1rem;
+    position: relative;
+    display: inline-block;
+    border: none;
+    color: var(--text-color);
+    background: transparent;
+    transition: .3s;
+    -webkit-transition: .3s;
+}
+#algo-select {
+    display: inline-block;
+    position: relative;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
 }
 
 /*Slider*/
 
 .slidecontainer {
-    margin-top: 5px;
+    margin-top: 10px;
     position: absolute;
+    background-color: red;
 }
 .slidecontainer h2 {
     color: var(--text-color);
@@ -46,7 +114,6 @@
     margin-top: 21px;
     padding-left: 10px;
 }
-
 .slider {
     margin-top: 20px;
     margin-left: 15px;
@@ -57,6 +124,7 @@
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
     transition: opacity .2s;
+    -webkit-transition: .2s;
 }
 
 /* Mouse-over effects */
@@ -100,4 +168,7 @@
 
 .options-container button:hover {
     transform: scale(1.1);
+}
+#reset-button:hover {
+    color: var(--bar-color);
 }
