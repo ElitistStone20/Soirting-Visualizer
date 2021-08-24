@@ -6,6 +6,7 @@ import { getQuickSortAnimations } from "../sortingAlgorithms/quicksort";
 import { getHeapSortAnimations } from "../sortingAlgorithms/heap_sort";
 import { getInsertionSortAnimations } from "../sortingAlgorithms/insertion_sort";
 import OptionButton from "./optionButton";
+import 'react-dropdown/style.css';
 
 export default function SortingVisualizer() {
   
@@ -187,16 +188,14 @@ export default function SortingVisualizer() {
     <div className="App">
       <div className="options-container">        
         <OptionButton {...visualise_props}>Visualise!</OptionButton> 
-        <div className="options">
-          <div className="custom-select">
-            <select id="algo-select">
-              <option value="1">Merge Sort</option>
-              <option value="2">Quick Sort</option>
-              <option value="3">Bubble Sort</option>
-              <option value="4">Heap Sort</option>
-              <option value="5">Insertion Sort</option>
-            </select>          
-          </div>  
+        <div className="options">         
+          <select id="algo-select">
+            <option value="1">Merge Sort</option>
+            <option value="2">Quick Sort</option>
+            <option value="3">Bubble Sort</option>
+            <option value="4">Heap Sort</option>
+            <option value="5">Insertion Sort</option>
+          </select>                   
           <OptionButton {...generate_props}>Generate New Array</OptionButton>    
         </div>    
       </div>
