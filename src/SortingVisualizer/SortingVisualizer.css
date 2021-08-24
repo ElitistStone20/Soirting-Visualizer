@@ -6,13 +6,16 @@
 }
 
 /*Options bar and all objects*/
-
 .options-container {
     background-color: var(--secondary-color);
     position: absolute;
     width: 100%;
+    height: 100px;
 }
-.options-container button {
+.options {
+    display: inline-block;
+}
+#option-button {
     display: inline-block;
     margin: 20px;
     color: var(--text-color);
@@ -20,59 +23,77 @@
     border: none;
     padding: 5px;
     border-radius: 10%;
-    font-size: 15px;
+    margin-left: 150px;
+    font-size: 25px;
     transition: 0.5s;
     -webkit-transition: 0.5s;
+}
+#reset-button {
+    margin-top: 27px;
+    padding-left: 1rem;
+    position: relative;
+    display: inline-block;
+    border: none;
+    color: var(--text-color);
+    background: transparent;
+    transition: .3s;
+    -webkit-transition: .3s;
+}
+#algo-select {
+    display: inline-block;
+    position: relative;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
 }
 
 /*Slider*/
 
 .slidecontainer {
+    margin-top: 10px;
     position: absolute;
+    background-color: red;
 }
 .slidecontainer h2 {
     color: var(--text-color);
-    font-size: 15px;
+    font-size: 20px;
     float: left;
+    padding-left: 15px;
     position: relative;
 }
-
+.slidecontainer h3 {
+    color: var(--text-color);
+    font-size: 14px;
+    float: right;
+    position: relative;
+    margin-top: 21px;
+    padding-left: 10px;
+}
 .slider {
-    margin-top: 15px;
-    margin-left: 70px;
+    margin-top: 20px;
+    margin-left: 15px;
     position: relative;
     width: 15rem;
     height: 25px;
     float: left;
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
     transition: opacity .2s;
+    -webkit-transition: .2s;
 }
 
 /* Mouse-over effects */
 .slider:hover {
     opacity: 1; /* Fully shown on mouse-over */
-  }
+}
   
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: var(--bar-color); /* Green background */
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
     cursor: pointer; /* Cursor on hover */
-  }
-  
-  .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-  }
-/*Main body of the webpage*/
+}
 
+
+/*Main body of the webpage*/
 .body {
     background-color: var(--background-color);
 }
@@ -102,4 +123,7 @@
 
 .options-container button:hover {
     transform: scale(1.1);
+}
+#reset-button:hover {
+    color: var(--bar-color);
 }
